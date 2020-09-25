@@ -5,7 +5,7 @@
 stoplight = ['green', 'yellow', 'red'].sample
 
 case stoplight
-when 'green' then puts 'Go!'
+when 'green'  then  puts 'Go!'          #important to use proper spacing to improve readability
 when 'yellow' then  puts 'Slow down!'
-else puts 'Stop!'
+else                puts 'Stop!'
 end

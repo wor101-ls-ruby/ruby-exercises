@@ -52,3 +52,14 @@ each_cons([1, 3, 6, 10], 5) do |value1, *values|
   hash[value1] = values
 end
 p hash == {}
+
+
+# alt solution using splat * operator
+
+# def each_cons(array, n)
+#   array.each_index do |index|
+#     break if index + n - 1 >= array.size
+#     yield(*array[index..(index + n - 1)])
+#   end
+#   nil
+# end

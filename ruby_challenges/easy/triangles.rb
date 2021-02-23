@@ -66,10 +66,16 @@ class Triangle
     if sides.any? { |side| side <= 0 }
       raise ArgumentError
       return false
+    elsif sides[0] + sides[1] < sides[2]
+      raise ArgumentError
+      return false
+    elsif sides[0] + sides[2] < sides[1]
+      raise ArgumentError
+      return false
+    elsif sides[1] + sides[2] < sides[0]
+      raise ArgumentError
+      return false
     end
-    return false if sides[0] + sides[1] < sides[2]
-    return false if sides[0] + sides[2] < sides[1]
-    return false if sides[1] + sides[2] < sides[0]
     true
   end
   
@@ -94,3 +100,36 @@ p triangle2.kind == 'isosceles'
 
 triangle3 = Triangle.new(3, 4, 5)
 p triangle3.kind == 'scalene'
+
+
+# Launch School solution
+=begin
+class Triangle
+  attr_reader :sides
+
+  def initialize(side1, side2, side3)
+    @sides = [side1, side2, side3]
+    raise ArgumentError.new "Invalid triangle lengths" unless valid?
+  end
+
+  def kind
+    if sides.uniq.size == 1
+      'equilateral'
+    elsif sides.uniq.size == 2
+      'isosceles'
+    else
+      'scalene'
+    end
+  end
+
+  private
+
+  def valid?
+    sides.min > 0 &&
+    sides[0] + sides[1] >= sides[2] &&
+    sides[1] + sides[2] >= sides[0] &&
+    sides[0] + sides[2] >= sides[1]
+  end
+end
+
+=end
